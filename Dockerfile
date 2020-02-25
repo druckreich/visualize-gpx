@@ -5,7 +5,7 @@ COPY package.json package-lock.json /app/
 RUN npm install
 COPY . /app
 
-RUN ng build --outputPath=/dist/www
+RUN ng build --outputPath=/dist/www --aot --prod
 
 FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*

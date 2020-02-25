@@ -1,5 +1,7 @@
 build:
-	docker build -t visualize-gpx:latest .
+	docker build -t druckreich/visualize-gpx:latest .
 
-save:
-	docker save visualize-gpx:latest > visualize-gpx.tar && scp visualize-gpx.tar syn:./images && rm visualize-gpx.tar
+push:
+	docker push druckreich/visualize-gpx:latest
+
+publish: build && push

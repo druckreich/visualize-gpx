@@ -30,22 +30,35 @@ export class AppComponent {
     };
 
     onMapReady(map: L.Map) {
-        var markerIcon = L.icon({
-            iconSize: [25, 41],
-            iconAnchor: [13, 41],
-            iconUrl: 'pin-icon-start.png',
-            shadowUrl: 'pin-icon-end.png'
-        });
-        L.marker([51.5, -0.09], {icon: markerIcon}).addTo(map);
-
-
         const gpx: string = "../assets/island.gpx";
-
         const gpxOptions: L.GPXOptions = {
             marker_options: {
-                startIconUrl: 'assets/images/pin-icon-start.png',
-                endIconUrl: 'assets/images/pin-icon-end.png',
-                shadowUrl: 'assets/images/pin-shadow.png'
+                markerIcon: L.icon({
+                    iconSize: [25, 41],
+                    iconAnchor: [13, 41],
+                    iconUrl: 'assets/images/pin-icon-start.png',
+                    shadowUrl: 'assets/images/pin-shadow.png'
+                }),
+                startIcon: L.icon({
+                    iconSize: [25, 41],
+                    iconAnchor: [13, 41],
+                    iconUrl: 'assets/images/pin-icon-start.png',
+                    shadowUrl: 'assets/images/pin-shadow.png'
+                }),
+                endIcon: L.icon({
+                    iconSize: [25, 41],
+                    iconAnchor: [13, 41],
+                    iconUrl: 'assets/images/pin-icon-end.png',
+                    shadowUrl: 'assets/images/pin-shadow.png'
+                }),
+                wptIcons: {
+                    '': L.icon({
+                        iconSize: [25, 41],
+                        iconAnchor: [13, 41],
+                        iconUrl: 'assets/images/pin-icon-wpt.png',
+                        shadowUrl: 'assets/images/pin-shadow.png'
+                    })
+                }
             }
         };
         new L.GPX(gpx, gpxOptions).addTo(map);
