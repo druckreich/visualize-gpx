@@ -5,9 +5,14 @@ COPY package.json package-lock.json /app/
 RUN npm install
 COPY . /app
 
-RUN ng build --outputPath=/dist/www --aot --prod
+RUN ng build --outputPath=/dist/visualize-gpx
 
-FROM nginx:alpine
-RUN rm -rf /usr/share/nginx/html/*
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /dist/www /usr/share/nginx/html
+FROM node
+EXPOSE 80
+WORKDIR /app
+
+RUN npm install express
+COPY --from=builder /app/server.js /app
+COPY --from=builder /dist/visualize-gpx /app
+ENTRYPOINT ["node", "server.js"]
+
