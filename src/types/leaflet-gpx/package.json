@@ -1,0 +1,58 @@
+{
+  "_from": "@types/leaflet-gpx",
+  "_id": "@types/leaflet-gpx@1.3.1",
+  "_inBundle": false,
+  "_integrity": "sha512-wQwfHomfHMEOIfQc03/EehsrAq9+1eD1eKl9REA5Bp+pAe6nkxtCLA6OAV6itm3V/WJxrJaRqEqXv2Smujf4Yg==",
+  "_location": "/@types/leaflet-gpx",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@types/leaflet-gpx",
+    "name": "@types/leaflet-gpx",
+    "escapedName": "@types%2fleaflet-gpx",
+    "scope": "@types",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/leaflet-gpx/-/leaflet-gpx-1.3.1.tgz",
+  "_shasum": "66dd3dc41c68d90eba5b498d737347c98a9e231e",
+  "_spec": "@types/leaflet-gpx",
+  "_where": "/app",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Viktor Soucek",
+      "url": "https://github.com/soucekv"
+    },
+    {
+      "name": "Márton Molnár",
+      "url": "https://github.com/molnarm"
+    }
+  ],
+  "dependencies": {
+    "@types/leaflet": "*"
+  },
+  "deprecated": false,
+  "description": "TypeScript definitions for leaflet-gpx",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/leaflet-gpx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typeScriptVersion": "2.3",
+  "typesPublisherContentHash": "a7f4d49e61ff788ebef9db874c005e0eeb2308361eef46a91c3f1cdb9de4d136",
+  "version": "1.3.1"
+}

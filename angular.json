@@ -30,13 +30,20 @@
                 "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
                 "output": "assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet-gpx/*.png",
+                "output": "assets/"
               }
             ],
             "styles": [
               "src/styles.scss",
               "./node_modules/leaflet/dist/leaflet.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/leaflet-gpx/gpx.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -95,25 +102,13 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/leaflet/dist/images",
-                "output": "assets/"
-              },
-              {
-                "glob": "**/*",
-                "input": "./node_modules/leaflet-gpx/*.png",
-                "output": "assets/"
-              }
+              "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "./node_modules/leaflet/dist/leaflet.css"
+              "src/styles.scss"
+
             ],
-            "scripts": [
-              "./node_modules/leaflet-gpx/gpx.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {

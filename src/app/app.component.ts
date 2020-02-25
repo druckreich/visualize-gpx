@@ -33,23 +33,21 @@ export class AppComponent {
         var markerIcon = L.icon({
             iconSize: [25, 41],
             iconAnchor: [13, 41],
-            iconUrl: 'assets/marker-icon.png',
-            shadowUrl: 'assets/marker-shadow.png'
+            iconUrl: 'pin-icon-start.png',
+            shadowUrl: 'pin-icon-end.png'
         });
         L.marker([51.5, -0.09], {icon: markerIcon}).addTo(map);
 
 
         const gpx: string = "../assets/island.gpx";
-        /*
+
         const gpxOptions: L.GPXOptions = {
             marker_options: {
-                startIconUrl: 'images/marker-icon.png',
+                startIconUrl: 'images/pin-icon-start.png',
                 endIconUrl: 'images/pin-icon-end.png',
                 shadowUrl: 'images/pin-shadow.png'
             }
         };
-
-         */
-        new L.GPX(gpx, {}).addTo(map);
+        new L.GPX(gpx, gpxOptions).addTo(map);
     }
 }
