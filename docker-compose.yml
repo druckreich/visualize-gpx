@@ -1,0 +1,10 @@
+version: '2.2'
+services:
+  visualize-gpx:
+    image: 'teracy/angular-cli'
+    ports:
+      - 4200:4200
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ng serve --host=0.0.0.0
