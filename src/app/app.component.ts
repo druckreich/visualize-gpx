@@ -43,9 +43,9 @@ export class AppComponent {
 
         const gpxOptions: L.GPXOptions = {
             marker_options: {
-                startIconUrl: 'images/pin-icon-start.png',
-                endIconUrl: 'images/pin-icon-end.png',
-                shadowUrl: 'images/pin-shadow.png'
+                startIconUrl: 'assets/images/pin-icon-start.png',
+                endIconUrl: 'assets/images/pin-icon-end.png',
+                shadowUrl: 'assets/images/pin-shadow.png'
             }
         };
         new L.GPX(gpx, gpxOptions).addTo(map);

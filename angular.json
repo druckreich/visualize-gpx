@@ -25,17 +25,7 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/leaflet/dist/images",
-                "output": "assets/"
-              },
-              {
-                "glob": "**/*",
-                "input": "./node_modules/leaflet-gpx/*.png",
-                "output": "assets/"
-              }
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss",
