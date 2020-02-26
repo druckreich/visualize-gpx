@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 // Import Leaflet into L
 import * as L from 'leaflet';
-import {GPXService} from "./+store/gpx.service";
+import {GPXService} from "./state/gpx.service";
 
 @Component({
     selector: 'app-root',
@@ -30,8 +30,8 @@ export class AppComponent {
         }
     };
 
-    constructor(public gpxService: GPXService) {
-        this.gpxService.loadTracks();
+    constructor() {
+
     }
 
     onMapReady(map: L.Map) {

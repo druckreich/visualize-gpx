@@ -3,6 +3,7 @@ FROM node:10
 
 # Install angular-cli
 RUN npm install -g @angular/cli
+RUN npm install -g @ngxs/cli
 
 # Create a directory where our app will be placed
 RUN mkdir -p /app
