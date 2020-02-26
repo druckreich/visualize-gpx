@@ -1,7 +1,3 @@
-<div *ngIf="false" style="width: 600px; height: 400px"
-     leaflet
-     [leafletOptions]="options"
-     [leafletLayers]="layers"
-     [leafletLayersControl]="layersControl"
-     (leafletMapReady)="onMapReady($event)">
-</div>
+<app-track-list (trackSelected)="onTrackSelected($event)"></app-track-list>
+<app-track-item [track]="selectedTrack"></app-track-item>
+

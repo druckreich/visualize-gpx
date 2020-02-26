@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Tracks</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-action-list>
+            <button mat-list-item (click)="onTrackSelected(t)" *ngFor="let t of tracks$ | async">
+                {{t.name}}
+            </button>
+        </mat-action-list>
+    </mat-card-content>
+</mat-card>
+
+
+
