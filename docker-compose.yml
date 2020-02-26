@@ -1,10 +1,14 @@
-version: '2.2'
+version: '3.7'
 services:
-  visualize-gpx:
-    image: 'teracy/angular-cli'
+  angular-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.angular
     ports:
       - 4200:4200
     volumes:
       - .:/app
-    working_dir: /app
-    command: ng serve --host=0.0.0.0
+  express-server:
+    build: express-server
+    ports:
+      - 3000:3000

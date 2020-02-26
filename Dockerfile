@@ -4,15 +4,18 @@ WORKDIR /app
 COPY package.json package-lock.json /app/
 RUN npm install
 COPY . /app
+RUN npm run build
 
-RUN ng build --outputPath=/dist/visualize-gpx
+FROM node:10
 
-FROM node
-EXPOSE 80
-WORKDIR /app
+WORKDIR /usr/src/app
 
+COPY --from=builder /app/server.js /usr/src/app
+COPY --from=builder /app/dist/visualize-gpx /usr/src/app/www
+
+RUN npm install --quiet node-gyp forever -g
 RUN npm install express
-COPY --from=builder /app/server.js /app
-COPY --from=builder /dist/visualize-gpx /app
-ENTRYPOINT ["node", "server.js"]
+
+EXPOSE 80
+CMD forever server.js 80
 

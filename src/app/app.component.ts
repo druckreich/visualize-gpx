@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 // Import Leaflet into L
 import * as L from 'leaflet';
+import {GPXService} from "./+store/gpx.service";
 
 @Component({
     selector: 'app-root',
@@ -29,7 +30,12 @@ export class AppComponent {
         }
     };
 
+    constructor(public gpxService: GPXService) {
+        this.gpxService.loadTracks();
+    }
+
     onMapReady(map: L.Map) {
+        /*
         const gpx: string = "../assets/island.gpx";
         const gpxOptions: L.GPXOptions = {
             marker_options: {
@@ -62,5 +68,6 @@ export class AppComponent {
             }
         };
         new L.GPX(gpx, gpxOptions).addTo(map);
+        */
     }
 }
