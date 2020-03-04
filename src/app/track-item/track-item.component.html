@@ -1,7 +1,69 @@
-<div style="height: 300px"
+<div style="height: 600px; width: 800px"
      leaflet
      [leafletBaseLayers]="baseLayers"
      [leafletCenter]="center"
      [leafletFitBounds]="fitBounds"
     (leafletMapReady)="onMapReady($event)">
 </div>
+
+<div>
+    <section class="mat-typography" *ngIf="data">
+        <dl>
+            <dt>distance:</dt>
+            <dd>{{(data.distance / 1000).toFixed(2)}} km</dd>
+        </dl>
+
+        <dl>
+            <dt>total_time: :</dt>
+            <dd>
+                <span>{{data.total_time.d}} d </span>
+                <span>{{data.total_time.h}} h </span>
+                <span>{{data.total_time.m}} m </span>
+                <span>{{data.total_time.s}} s </span>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>start_time: :</dt>
+            <dd>
+                <span>{{data.start_time | date: 'dd.MM.yyyy'}}</span>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>end_time: :</dt>
+            <dd>
+                <span>{{data.end_time | date: 'dd.MM.yyyy'}}</span>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>elevation_gain:</dt>
+            <dd>
+            <dd>{{(data.elevation_gain / 1000).toFixed(2)}} km</dd>
+        </dl>
+
+        <dl>
+            <dt>moving_speed: :</dt>
+            <dd>
+            <dd>{{(data.moving_speed).toFixed(2)}} km</dd>
+        </dl>
+
+        <dl>
+            <dt>moving_pace: :</dt>
+            <dd>
+            <dd>{{(data.moving_pace / 1000).toFixed(2)}} km</dd>
+        </dl>
+
+        <dl>
+            <dt>total_speed: :</dt>
+            <dd>
+            <dd>{{(data.total_speed / 1000).toFixed(2)}} km</dd>
+        </dl>
+
+
+
+   </section>
+</div>
+
+

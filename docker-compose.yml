@@ -10,5 +10,7 @@ services:
       - .:/app
   express-server:
     build: express-server
+    volumes:
+      - ~/tracks:/tracks
     ports:
       - 3000:3000

@@ -6,9 +6,6 @@ import {Injectable} from "@angular/core";
 
 export class Track {
     name: string;
-    path: string;
-    gpx: string;
-    pending: boolean;
 }
 
 export class MainStateModel {

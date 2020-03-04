@@ -6,6 +6,7 @@ const walk = require('walk');
 // Constants
 const PORT = 3000;
 const HOST = '0.0.0.0';
+const TRACKS_PATH = '/tracks';
 
 const app = express();
 app.use(function(req, res, next) {
@@ -15,17 +16,17 @@ app.use(function(req, res, next) {
 });
 
 app.get('/tracks/:name', function(req, res, next) {
-    res.sendFile(req.params.name, {root: './tracks'});
+    res.sendFile(req.params.name, {root: TRACKS_PATH});
 });
 
 app.get('/tracks', function (req, res) {
     const ALL_TRACKS   = [];
-    const walker  = walk.walk('./tracks', { followLinks: false });
+    const walker  = walk.walk(TRACKS_PATH, { followLinks: false });
     walker.on('file', function(root, stat, next) {
         // Add this file to the list of files
         ALL_TRACKS.push({
             name: stat.name,
-            path: "/tracks/" + stat.name,
+            path: TRACKS_PATH + stat.name,
         });
         next();
     });
