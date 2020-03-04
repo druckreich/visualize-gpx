@@ -1,0 +1,12 @@
+.track-list-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  .track {
+    flex: 0 0 400px;
+    margin: 12px;
+
+    mat-card {
+    }
+  }
+}

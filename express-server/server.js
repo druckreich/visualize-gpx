@@ -2,7 +2,6 @@
 
 const express = require('express');
 const walk = require('walk');
-//const serveIndex = require('serve-index');
 
 // Constants
 const PORT = 3000;
@@ -24,7 +23,10 @@ app.get('/tracks', function (req, res) {
     const walker  = walk.walk('./tracks', { followLinks: false });
     walker.on('file', function(root, stat, next) {
         // Add this file to the list of files
-        ALL_TRACKS.push({name: stat.name, path: "/tracks/" + stat.name});
+        ALL_TRACKS.push({
+            name: stat.name,
+            path: "/tracks/" + stat.name,
+        });
         next();
     });
     walker.on('end', function() {

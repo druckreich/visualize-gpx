@@ -1,12 +1,18 @@
-import {Action, Select, Selector, State, StateContext} from '@ngxs/store';
-import {AllTracks, TrackByName} from './main.actions';
+import {Action, Selector, State, StateContext} from '@ngxs/store';
+import {AllTracks, GPXByTrackname, GPXByTracknameSuccess} from './main.actions';
 import {GPXService} from "./gpx.service";
 import {tap} from "rxjs/operators";
 import {Injectable} from "@angular/core";
-import {patch, updateItem} from "@ngxs/store/operators";
+
+export class Track {
+    name: string;
+    path: string;
+    gpx: string;
+    pending: boolean;
+}
 
 export class MainStateModel {
-    public tracks: any[];
+    public tracks: Track[];
 }
 
 @State<MainStateModel>({
@@ -37,12 +43,10 @@ export class MainState {
         )
     }
 
-    @Action(AllTracks)
-    trackByName(ctx: StateContext<MainStateModel>, action: TrackByName) {
+    @Action(GPXByTrackname)
+    trackByName(ctx: StateContext<MainStateModel>, action: GPXByTrackname) {
         return this.gpxService.trackByName(action.name).pipe(
-            tap((gpx: string) => {
-                console.log(gpx);
-            })
+            tap((gpx: string) => ctx.dispatch(new GPXByTracknameSuccess(gpx)))
         )
     }
 }

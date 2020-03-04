@@ -1,7 +1,7 @@
-<div style="width: 600px; height: 400px"
+<div style="height: 300px"
      leaflet
-     [leafletOptions]="options"
-     [leafletLayers]="layers"
-     [leafletLayersControl]="layersControl"
-     (leafletMapReady)="onMapReady($event)">
+     [leafletBaseLayers]="baseLayers"
+     [leafletCenter]="center"
+     [leafletFitBounds]="fitBounds"
+    (leafletMapReady)="onMapReady($event)">
 </div>

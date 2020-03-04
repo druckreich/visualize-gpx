@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Dispatch} from "@ngxs-labs/dispatch-decorator";
-import {AllTracks, TrackByName} from "./main.actions";
+import {AllTracks, GPXByTrackname} from "./main.actions";
 
 @Injectable({
     providedIn: "root"
@@ -17,8 +17,8 @@ export class GPXService {
     }
 
     @Dispatch()
-    public static trackByName(name: string) {
-        return new TrackByName(name);
+    public static gpxByTrackname(name: string) {
+        return new GPXByTrackname(name);
     }
 
     constructor(public http: HttpClient) {
@@ -29,6 +29,6 @@ export class GPXService {
     }
 
     trackByName(name: string) {
-        return this.http.get(`${this.API}/tracks/` + name);
+        return this.http.get(`${this.API}/tracks/` + name, {responseType: 'text'});
     }
 }

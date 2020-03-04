@@ -3,9 +3,14 @@ export class AllTracks {
   constructor() { }
 }
 
-export class TrackByName {
-  static readonly type = '[Main] TRACK BY NAME';
+export class GPXByTrackname {
+  static readonly type = '[Main] GPX BY TRACK NAME';
   constructor(public name: string) { }
+}
+
+export class GPXByTracknameSuccess {
+  static readonly type = '[Main] GPX BY TRACK NAME SUCCESS';
+  constructor(public gpx: string) { }
 }
 
 

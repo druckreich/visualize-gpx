@@ -1,58 +1,60 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import * as L from "leaflet";
+import {Track} from "../state/main.state";
+import {GPXService} from "../state/gpx.service";
+import {Actions, ofActionDispatched} from "@ngxs/store";
+import {GPXByTracknameSuccess} from "../state/main.actions";
+import {Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
     selector: 'app-track-item',
     templateUrl: './track-item.component.html',
-    styleUrls: ['./track-item.component.scss']
+    styleUrls: ['./track-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TrackItemComponent implements OnInit, OnChanges {
 
     @Input()
-    track: string;
+    track: Track;
 
     map: L.Map;
+    center: L.LatLng = L.latLng([46.879966, -121.726909]);
+    fitBounds: L.LatLngBounds = L.latLngBounds([[40.712, -74.227], [40.774, -74.125]]);
 
-    options = {
-        layers: [
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, attribution: '...'}),
-        ],
-        zoom: 5,
-        center: L.latLng(46.95, -122)
+    baseLayers = {
+        'Open Street Map': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18})
     };
 
-    layers = [];
+    destroy$: Subject<boolean> = new Subject<boolean>();
 
-    layersControl = {
-        baseLayers: {
-            'Open Street Map': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                attribution: '...'
+    constructor(public actions$: Actions) {
+        this.actions$
+            .pipe(
+                takeUntil(this.destroy$),
+                ofActionDispatched(GPXByTracknameSuccess)
+            )
+            .subscribe(({gpx}) => {
+                this.showTrack(this.map, gpx)
             })
-        }
-    };
-
-
-    constructor() {
     }
 
     ngOnInit(): void {
+        GPXService.gpxByTrackname(this.track.name);
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next(true);
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
-        if (changes['track'].currentValue) {
-            this.showTrack(this.track);
-        }
     }
-
 
     onMapReady(map: L.Map) {
         this.map = map;
     }
 
-    showTrack(track: string) {
-        const gpx: string = "localhost:3000/" + track;
+    showTrack(map: L.Map, gpx: string) {
         const gpxOptions: L.GPXOptions = {
             async: true,
             marker_options: {
@@ -84,11 +86,7 @@ export class TrackItemComponent implements OnInit, OnChanges {
                 }
             }
         };
-        new L.GPX(gpx, gpxOptions)
-            .on('loaded', function (e) {
-              console.log(e);
-                this.map.fitBounds(e.target.getBounds());
-            }).addTo(this.map);
+        new L.GPX(gpx, gpxOptions).addTo(map);
     }
 
 }

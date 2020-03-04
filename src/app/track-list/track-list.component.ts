@@ -1,8 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Select} from "@ngxs/store";
-import {MainState} from "../state/main.state";
+import {MainState, Track} from "../state/main.state";
 import {Observable} from "rxjs";
-import {GPXService} from "../state/gpx.service";
 
 @Component({
     selector: 'app-track-list',
@@ -12,19 +11,15 @@ import {GPXService} from "../state/gpx.service";
 export class TrackListComponent implements OnInit {
 
     @Select(MainState.tracks)
-    tracks$: Observable<any[]>;
-
-    @Output()
-    trackSelected: EventEmitter<string> = new EventEmitter<string>();
+    tracks$: Observable<Track[]>;
 
     constructor() {
+
     }
 
     ngOnInit(): void {
     }
 
-    onTrackSelected(track: any) {
-        GPXService.trackByName(track.path);
+    onResize(event): void {
     }
-
 }
